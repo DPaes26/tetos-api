@@ -1,4 +1,4 @@
-// fazer gruds que FileSystemWritableFileStreamdepois vai no application.js e faz uma routes
+// fazer gruds que faltaram
 
 const PRISMA = require("../services/script");
 
@@ -18,7 +18,7 @@ async function buscar(req, res) {
 async function criar(req, res) {
     try {
         const dados = req.body;
-
+        const arquivo = req.file;
         await PRISMA.imoveis.create({
             data: {
                 ...dados,
@@ -28,6 +28,7 @@ async function criar(req, res) {
                 suites: Number(dados.suites),
                 banheiros: Number(dados.banheiros),
                 garagens: Number(dados.garagens),
+                imagem: `/uploads/imoveis/${arquivo.filename}`
             }
         });
 

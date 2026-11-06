@@ -8,6 +8,10 @@ const imoveisRoutes = require("./src/routes/imoveisRoutes");
 const { login } = require("./src/controllers/usuariosController");
 const { usuarioAutenticado } = require("./src/middlewares/usuariosMiddlewares");
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./src/docs/swagger-output.json');
+
+
 const app = express();
 
 app.use(cors()); //permite que requisições externas acessem as rotas.
@@ -16,6 +20,8 @@ app.use(express.json())//transforma o JSON do corpo da requisição em JS
 app.get("/", (req, res) => {
     res.send("Olá mundo")
 });
+
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.post("/login", login);
 
