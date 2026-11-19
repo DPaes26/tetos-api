@@ -40,7 +40,7 @@ async function criar(req, res) {
 
 async function editar(req, res) {
     try {
-        const { dados } = req.body;
+        const { nome, telefone, cpf_cnpj } = req.body;
         const { id } = req.params;
 
 
@@ -49,7 +49,9 @@ async function editar(req, res) {
                 id
             },
             data: {
-                dados
+                nome,
+                telefone,
+                cpf_cnpj
             }
         });
 
